@@ -9,7 +9,6 @@ module.exports = {
   attributes: {
     uid: {
       type: 'string',
-      primaryKey: true,
       unique: true,
       required: true
     },
