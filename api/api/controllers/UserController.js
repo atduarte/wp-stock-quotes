@@ -12,15 +12,10 @@ module.exports = {
   quotes: function (req, res) {
     sails.models.stock
       .find({user: req.param('uid')})
-      .then(function(stocks) {
-        return Promise.props(_(stocks)
-          .map(function (stock) { return [stock.name, quote.fetch(stock.name)]; })
-          .object()
-          .value()
-        );
-      })
-      .then(function (result) {
-        return res.send(result);
+      .then(function (stocks) {
+        return res.send(_.map(stocks, function (stock) {
+          return quote.graph(stock.name);
+        }));
       })
       .catch(function (err) {
         return res.badRequest(err);

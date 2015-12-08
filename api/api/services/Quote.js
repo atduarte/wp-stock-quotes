@@ -4,6 +4,7 @@ var yahoo = require('yahoo-finance'),
 
 module.exports = {
   fetch: function (symbol) {
+
     return yahoo.historical({
         symbol: symbol,
         to: moment().format("YYYY-MM-DD"),
@@ -13,5 +14,9 @@ module.exports = {
       .then(function (snapshot) {
         return _.map(snapshot, function (item) { return item.close; });
       });
+  },
+
+  graph: function (symbol) {
+    return 'http://chart.finance.yahoo.com/z?t=30d&s=' + symbol;
   }
 };
