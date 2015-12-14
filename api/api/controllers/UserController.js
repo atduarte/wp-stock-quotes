@@ -19,19 +19,6 @@ module.exports = {
       })
       .catch(function (err) {
         return res.badRequest(err);
-      })
-  },
-  quotes: function (req, res) {
-    sails.models.stock
-      .find({"user.id": req.param('id')})
-      .then(function (stocks) {
-        return res.send(_.map(stocks, function (stock) {
-          stock.graph = quote.graph(stock.name);
-          return _.pick(stock, ['name', 'upperLimit', 'lowerLimit', 'graph']);
-        }));
-      })
-      .catch(function (err) {
-        return res.badRequest(err);
       });
   }
 };

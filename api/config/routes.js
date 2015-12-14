@@ -36,9 +36,6 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  'get /quotes': 'StockController.quotes',
-  'get /user/:uid/quotes': 'UserController.quotes',
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
