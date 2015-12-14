@@ -5,6 +5,8 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
+var quote = require('../services/Quote');
+
 module.exports = {
   attributes: {
     user: {
@@ -20,6 +22,12 @@ module.exports = {
     },
     lowerLimit: {
       type : 'float'
+    },
+
+    toJSON: function() {
+      var obj = this.toObject();
+      obj.graph = quote.graph(obj.name);
+      return obj;
     }
   }
 };
