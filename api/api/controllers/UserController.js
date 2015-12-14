@@ -12,7 +12,7 @@ var async = require('async'),
 module.exports = {
   create: function (req, res) {
     sails.models.user
-      .findOne({id: req.param('id')})
+      .findOne({uid: req.param('uid')})
       .then(function (user) {
         if (user) return res.send(user);
         createAction(req, res);
