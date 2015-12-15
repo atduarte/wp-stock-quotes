@@ -14,7 +14,7 @@ module.exports.bootstrap = function(cb) {
   var push = require('../cron/push');
   push.send();
 
-  setInterval(push.send, 60*60*1000);
+  //setInterval(push.send, 60*60*1000);
 
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)

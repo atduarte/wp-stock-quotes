@@ -23,7 +23,7 @@ module.exports = {
       .find()
       .populate(['user'])
       .then(function (stocks) {
-        _.map(stocks, function (stock) {
+        _.each(stocks, function (stock) {
           if (!stock.lowerLimit && !stock.upperLimit) return;
 
           quote.fetch(stock.name)
@@ -31,12 +31,12 @@ module.exports = {
               result = _.last(result);
               if (stock.lowerLimit && stock.lowerLimit >= result) {
                 console.log('LOWER');
-                sendPush(stock.user.uid, stock.name + ' upper limit hit!');
+                return sendPush(stock.user.uid, stock.name + ' upper limit hit!');
               }
 
               if (stock.upperLimit && stock.upperLimit <= result) {
                 console.log('UPPER');
-                sendPush(stock.user.uid, stock.name + ' lower limit hit!');
+                return sendPush(stock.user.uid, stock.name + ' lower limit hit!');
               }
             });
         });
