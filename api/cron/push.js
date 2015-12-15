@@ -15,22 +15,10 @@ var sendPush = function (urlPath, message) {
     else
       console.log(result);
   });
-
-  //console.log('send push');
-  //
-  //http.request({
-  //  'host': urlPath.host,
-  //  'path': urlPath.pathName,
-  //  'method': 'post'
-  //}, function (err, result) {
-  //  console.log(err, result);
-  //});
 };
 
 module.exports = {
   send: function () {
-    console.log('CCHECKING');
-
     sails.models.stock
       .find()
       .populate(['user'])
@@ -43,12 +31,12 @@ module.exports = {
               result = _.last(result);
               if (stock.lowerLimit && stock.lowerLimit >= result) {
                 console.log('LOWER');
-                sendPush(stock.user.uid, '');
+                sendPush(stock.user.uid, stock.name + ' upper limit hit!');
               }
 
               if (stock.upperLimit && stock.upperLimit <= result) {
                 console.log('UPPER');
-                sendPush(stock.user.uid, '');
+                sendPush(stock.user.uid, stock.name + ' lower limit hit!');
               }
             });
         });
