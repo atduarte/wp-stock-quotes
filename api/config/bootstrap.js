@@ -11,7 +11,7 @@
 
 module.exports.bootstrap = function(cb) {
 
-  //var push = require('../cron/push');
+  var push = require('../cron/push');
   //push.send();
   //
   //var CronJob = require('cron').CronJob;
