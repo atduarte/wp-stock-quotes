@@ -29,6 +29,8 @@ var sendPush = function (urlPath, message) {
 
 module.exports = {
   send: function () {
+    console.log('CCHECKING');
+
     sails.models.stock
       .find()
       .populate(['user'])
@@ -45,6 +47,7 @@ module.exports = {
               }
 
               if (stock.upperLimit && stock.upperLimit <= result) {
+                console.log('UPPER');
                 sendPush(stock.user.uid, '');
               }
             });
