@@ -11,14 +11,14 @@
 
 module.exports.bootstrap = function(cb) {
 
-  var push = require('../cron/push');
-  push.send();
-
-  var CronJob = require('cron').CronJob;
-  new CronJob('*/5 * * * *', function() {
-    console.log('Start cron');
-    push.send();
-  }, null, true, 'America/Los_Angeles');
+  //var push = require('../cron/push');
+  //push.send();
+  //
+  //var CronJob = require('cron').CronJob;
+  //new CronJob('*/5 * * * *', function() {
+  //  console.log('Start cron');
+  //  push.send();
+  //}, null, true, 'America/Los_Angeles');
 
   //setInterval(push.send, 2*60*1000);
 
